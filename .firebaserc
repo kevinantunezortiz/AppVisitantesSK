@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "appvisitantes-c3b62"
+  },
+  "targets": {
+    "appvisitantes-c3b62": {
+      "hosting": {
+        "app": [
+          "appvisitantesmrg"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
