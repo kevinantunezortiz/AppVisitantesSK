@@ -22,6 +22,11 @@
             console.log("WiFi perdido: Trabajando localmente...");
             await disableNetwork(db);
         });
+
+        if ('serviceWorker' in navigator) {
+            const { registerSW } = await import('virtual:pwa-register');
+            registerSW({ immediate: true });
+        }
     });
 
 </script>
