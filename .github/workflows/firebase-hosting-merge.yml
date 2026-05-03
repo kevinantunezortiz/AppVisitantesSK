@@ -10,8 +10,13 @@ jobs:
       - uses: actions/checkout@v4
 
       # --- PASOS FALTANTES QUE DEBES AGREGAR ---
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24 # Actualizamos a la versión recomendada por GitHub
+
       - name: Install Dependencies
-        run: npm install
+        run: npm install --force # Agregamos --force aquí también para evitar fallos en el servidor
 
       - name: Build Project
         run: npm run build
