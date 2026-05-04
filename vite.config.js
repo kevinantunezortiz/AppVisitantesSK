@@ -26,7 +26,9 @@ export default defineConfig({
 			},
 			workbox: {
 				// Esto hace que TODOS los archivos del build se guarden localmente
-				globPatterns: ['**/*.{js,css,html,ico,png,svg,webp}']
+				globPatterns: ['**/*.{js,css,html,ico,png,svg,webp}'],
+				navigateFallback:'index.html',
+				navigateFallbackDenylist: [/^\/api/],
 			}
 		})
 	]
