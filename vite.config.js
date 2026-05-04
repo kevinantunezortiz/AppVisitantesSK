@@ -5,6 +5,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 export default defineConfig({
 	plugins: [
 		sveltekit(),
+
 		VitePWA({
 			registerType: 'autoUpdate',
 			manifest: {
@@ -25,10 +26,22 @@ export default defineConfig({
 				]
 			},
 			workbox: {
-				// Esto hace que TODOS los archivos del build se guarden localmente
+				// 1. Incluye explícitamente el index.html en el precache
 				globPatterns: ['**/*.{js,css,html,ico,png,svg,webp}'],
-				navigateFallback:'index.html',
-				navigateFallbackDenylist: [/^\/api/],
+
+				// 2. Mapea la raíz al archivo index.html
+				modifyURLPrefix: {
+					'': '/'
+				},
+
+				// 3. ESTA ES LA SOLUCIÓN AL ERROR:
+				// Si el navegador pide "/" o cualquier ruta, dale el index.html que ya tiene guardado
+				navigateFallback: '/index.html',
+				cleanupOutdatedCaches: true,
+
+				// Permite que la app tome el control de inmediato
+				clientsClaim: true,
+				skipWaiting: true
 			}
 		})
 	]
